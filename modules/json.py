@@ -7,7 +7,9 @@ class Json:
     lastNames = []
     value = []
     pin = []
-    bankStatement = []
+    bankStatementCounter = []
+    bankStatementVariable = []
+    bankAccountHistory= []
     
     def SaveToJSON(self):
         data = {
@@ -15,7 +17,9 @@ class Json:
                 "firstNames": self.firstNames,
                 "lastNames": self.lastNames,
                 "value": self.value, 
-                "pin": self.pin
+                "pin": self.pin,
+                "bankAccountHistory": self.bankAccountHistory,
+                "bankStatementCounter": self.bankStatementCounter
             }
         }
         with open(self.CONFIG_FILE, "w") as outfile:
@@ -32,5 +36,7 @@ class Json:
                 self.lastNames = data["config"]["lastNames"]
                 self.value = data["config"]["value"]
                 self.pin = data["config"]["pin"]
+                self.bankAccountHistory = data["config"]["bankAccountHistory"]
+                self.bankStatementCounter = data["config"]["bankStatementCounter"]
         except Exception as e:
             print("The config has a wrong format. Delete the file and a new one will be generated. Error: {}" .format(e))

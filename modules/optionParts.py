@@ -21,18 +21,25 @@ class OptionParts:
 
     def CreateAccount(self):
         JSON.LoadFromJSON()
+        JSON.bankStatementCounter.append(0)
         print("Prease enter your first name ")
         firstNamesTmp = input()
         JSON.firstNames.append([firstNamesTmp])
         print("Prease enter your last name ")
         lastNamesTmp = input()
-        JSON.lastNames.append([lastNamesTmp])
+        JSON.lastNames.append([lastNamesTmp]) 
         print("Prease enter your value ")
+        JSON.bankAccountHistory.append(['-', '-', '-', '-', '-', '-', '-', '-', '-', '-'])
         valueTmp = input()
         JSON.value.append([valueTmp])
         print("You successfully created an account ")
         pinTmp = random.randint(1111,9999)
         JSON.pin.append([pinTmp])
+        for i in range(len(JSON.pin)):
+            if JSON.pin[int(i)] == [int(pinTmp)]:
+                JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = valueTmp
+                JSON.bankStatementCounter[i] +=1
+
         print("Her is your PIN: " + str(pinTmp) + ". Remember it and don't tell anyone about it")
         JSON.SaveToJSON()
     
@@ -47,6 +54,8 @@ class OptionParts:
                 deposite = int(input())
                 JSON.value[int(i)] = [str(int(*JSON.value[int(i)]) + deposite)]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
+                JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
+                JSON.bankStatementCounter[i] +=1
                 JSON.SaveToJSON()
                 break
             if (i < len(JSON.pin)-1):
@@ -71,6 +80,8 @@ class OptionParts:
                 withdraw = int(input())
                 JSON.value[int(i)] = [str(int(*JSON.value[int(i)]) - withdraw)]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
+                JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
+                JSON.bankStatementCounter[i] +=1
                 JSON.SaveToJSON()
                 break
             if (i < len(JSON.pin)-1):
