@@ -54,8 +54,13 @@ class OptionParts:
                 deposite = int(input())
                 JSON.value[int(i)] = [str(int(*JSON.value[int(i)]) + deposite)]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
-                JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
-                JSON.bankStatementCounter[i] +=1
+                if int(JSON.bankStatementCounter[i]) >= 10:
+                     del JSON.bankAccountHistory[i][0]
+                     JSON.bankAccountHistory[i].append('-')
+                     JSON.bankAccountHistory[i][9] = str(*JSON.value[i])
+                else:
+                    JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
+                    JSON.bankStatementCounter[i] +=1
                 JSON.SaveToJSON()
                 break
             if (i < len(JSON.pin)-1):
@@ -80,8 +85,13 @@ class OptionParts:
                 withdraw = int(input())
                 JSON.value[int(i)] = [str(int(*JSON.value[int(i)]) - withdraw)]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
-                JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
-                JSON.bankStatementCounter[i] +=1
+                if int(JSON.bankStatementCounter[i]) >= 10:
+                     del JSON.bankAccountHistory[i][0]
+                     JSON.bankAccountHistory[i].append('-')
+                     JSON.bankAccountHistory[i][9] = str(*JSON.value[i])
+                else:
+                    JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = str(*JSON.value[i])
+                    JSON.bankStatementCounter[i] +=1
                 JSON.SaveToJSON()
                 break
             if (i < len(JSON.pin)-1):
