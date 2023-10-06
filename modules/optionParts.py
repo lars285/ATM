@@ -16,7 +16,8 @@ class OptionParts:
         print(Fore.GREEN + "1. Create new Bank Account")
         print(Fore.BLUE + "2. Deposit money")
         print(Fore.MAGENTA + "3. Withdraw money")
-        print(Fore.YELLOW + "4. Exit Bank" + Style.RESET_ALL)
+        print(Fore.CYAN + "4. Show Account History")
+        print(Fore.YELLOW + "5. Exit Bank" + Style.RESET_ALL)
         self.menuNumber = input()
 
     def CreateAccount(self):
@@ -103,6 +104,27 @@ class OptionParts:
                     print(Fore.RED + "You entered the wrong PIN too many times!" + Style.RESET_ALL)
                     exit()
                 self.WithdrawMoney()
+
+    def AccountHistory(self):
+        print (Fore.RED + "Please Enter your PIN." + Style.RESET_ALL)
+        pinTmp = pwinput.pwinput(prompt='PIN: ', mask='*')
+        for i in range(len(JSON.pin)):
+            if JSON.pin[int(i)] == [int(pinTmp)]:
+                print(Fore.CYAN + "Hello " + str(*JSON.firstNames[int(i)]) + " " + str(*JSON.lastNames[int(i)]) + "!" + Style.RESET_ALL)
+                print(Fore.CYAN + "Here is your Bank Account History: " + Style.RESET_ALL)
+                a = 9
+                red = Fore.RED
+                green = Fore.GREEN
+                vergleich = 0
+                while 0 <= a :
+                    if (int(vergleich) < int(JSON.bankAccountHistory[i][(9- a)]) and a < 9 and int(JSON.bankAccountHistory[i][(9- a)]) > 0): 
+                        print(str(a+1) + "." + green + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
+                    elif (int(vergleich) > int(JSON.bankAccountHistory[i][(9- a)]) and a < 9) or int(JSON.bankAccountHistory[i][(9- a)]) < 0:
+                         print(str(a+1) + "." + red + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
+                    else:
+                        print(str(a+1) + "." + JSON.bankAccountHistory[i][(9- a)] + "€")
+                    vergleich = JSON.bankAccountHistory[i][(9- a)]
+                    a -= 1
 
     def exitBank(self):
         exit()

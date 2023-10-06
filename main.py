@@ -13,5 +13,7 @@ while True:
     if int(OP.menuNumber) == 3:
         OP.WithdrawMoney()
     if int(OP.menuNumber) == 4:
+        OP.AccountHistory()
+    if int(OP.menuNumber) == 5:
         OP.exitBank()
     
