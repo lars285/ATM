@@ -23,13 +23,13 @@ class OptionParts:
     def CreateAccount(self):
         JSON.LoadFromJSON()
         JSON.bankStatementCounter.append(0)
-        print("Prease enter your first name ")
+        print(Fore.GREEN + "Please enter your first name " + Style.RESET_ALL)
         firstNamesTmp = input()
         JSON.firstNames.append([firstNamesTmp])
-        print("Prease enter your last name ")
+        print(Fore.GREEN + "Please enter your last name " + Style.RESET_ALL)
         lastNamesTmp = input()
         JSON.lastNames.append([lastNamesTmp]) 
-        print("Prease enter your value ")
+        print(Fore.GREEN + "Please enter your value " + Style.RESET_ALL)
         JSON.bankAccountHistory.append(['-', '-', '-', '-', '-', '-', '-', '-', '-', '-'])
         valueTmp = input()
         JSON.value.append([valueTmp])
@@ -41,7 +41,7 @@ class OptionParts:
                 JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]] = valueTmp
                 JSON.bankStatementCounter[i] +=1
 
-        print("Her is your PIN: " + str(pinTmp) + ". Remember it and don't tell anyone about it")
+        print("Her is your PIN: " + Fore.RED + str(pinTmp) + Style.RESET_ALL + ". Remember it and don't tell anyone about it!")
         JSON.SaveToJSON()
     
     def DepositMoney(self):
@@ -113,15 +113,13 @@ class OptionParts:
                 print(Fore.CYAN + "Hello " + str(*JSON.firstNames[int(i)]) + " " + str(*JSON.lastNames[int(i)]) + "!" + Style.RESET_ALL)
                 print(Fore.CYAN + "Here is your Bank Account History: " + Style.RESET_ALL)
                 a = 9
-                red = Fore.RED
-                green = Fore.GREEN
                 vergleich = 0
                 while 0 <= a :
                     if (int(vergleich) < int(JSON.bankAccountHistory[i][(9- a)]) and a < 9 and int(JSON.bankAccountHistory[i][(9- a)]) > 0): 
-                        print("   " + green + "+" + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
+                        print("   " + Fore.GREEN + "+" + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
                         print(str(a+1) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
                     elif (int(vergleich) > int(JSON.bankAccountHistory[i][(9- a)]) and a < 9) or int(JSON.bankAccountHistory[i][(9- a)]) < 0:
-                         print("   " + red + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
+                         print("   " + Fore.RED + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
                          print(str(a+1) + ". "  + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
                     else:
                         print(str(a+1) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€")
