@@ -114,17 +114,19 @@ class OptionParts:
                 print(Fore.CYAN + "Here is your Bank Account History: " + Style.RESET_ALL)
                 a = 9
                 vergleich = 0
-                while 0 <= a :
-                    if (int(vergleich) < int(JSON.bankAccountHistory[i][(9- a)]) and a < 9 and int(JSON.bankAccountHistory[i][(9- a)]) > 0): 
-                        print("   " + Fore.GREEN + "+" + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
-                        print(str(a+1) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
-                    elif (int(vergleich) > int(JSON.bankAccountHistory[i][(9- a)]) and a < 9) or int(JSON.bankAccountHistory[i][(9- a)]) < 0:
-                         print("   " + Fore.RED + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][(9- a)]))) + "€" + Style.RESET_ALL)
-                         print(str(a+1) + ". "  + JSON.bankAccountHistory[i][(9- a)] + "€" + Style.RESET_ALL)
+                f = 0
+                while f < (JSON.bankStatementCounter[i]):
+                    if (int(vergleich) < int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9 and int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f -1]) > 0): 
+                        print("   " + Fore.GREEN + "+" + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]))) + "€" + Style.RESET_ALL)
+                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
+                    elif (int(vergleich) > int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9) or int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) < 0:
+                         print("   " + Fore.RED + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]))) + "€" + Style.RESET_ALL)
+                         print(str(JSON.bankStatementCounter[i]-f) + ". "  + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
                     else:
-                        print(str(a+1) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€")
+                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€")
                     vergleich = JSON.bankAccountHistory[i][(9- a)]
                     a -= 1
+                    f += 1
 
     def exitBank(self):
         exit()
