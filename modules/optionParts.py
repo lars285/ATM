@@ -123,10 +123,22 @@ class OptionParts:
                          print("   " + Fore.RED + str(-(int(vergleich) - int(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]))) + "€" + Style.RESET_ALL)
                          print(str(JSON.bankStatementCounter[i]-f) + ". "  + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
                     else:
-                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(9- a)] + "€")
-                    vergleich = JSON.bankAccountHistory[i][(9- a)]
+                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]-f-1)] + "€")
+                    vergleich = JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]-f-1)]
                     a -= 1
                     f += 1
+                JSON.SaveToJSON()
+                break
+            
+            if (i < len(JSON.pin)-1):
+                continue
+            else:
+                self.tries-=1
+                print("Wrong PIN! Try Again. Times left: " + Fore.RED + str(self.tries) + Style.RESET_ALL + ".")
+                if (self.tries == 0):
+                    print(Fore.RED + "You entered the wrong PIN too many times!" + Style.RESET_ALL)
+                    exit()
+                self.AccountHistory()
 
     def exitBank(self):
         exit()
