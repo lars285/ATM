@@ -53,7 +53,7 @@ class OptionParts:
                 print ("Your current bank balance is: " + Fore.RED + str(*JSON.value[int(i)]) + "€")
                 print (Fore.BLUE + "How many do you want do deposite ?" + Style.RESET_ALL)
                 deposite = input()
-                JSON.value[int(i)] = [str(float(*JSON.value[int(i)]) + float(deposite))]
+                JSON.value[int(i)] = [str(round(float(*JSON.value[int(i)]) - float(deposite), 2))]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
                 if int(JSON.bankStatementCounter[i]) >= 10:
                      del JSON.bankAccountHistory[i][0]
