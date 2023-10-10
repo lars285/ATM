@@ -116,15 +116,15 @@ class OptionParts:
                 vergleich = 0
                 f = 0
                 while f < (JSON.bankStatementCounter[i]):
-                    if (float(vergleich) < float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9 and float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f -1]) > 0): 
-                        print("   " + Fore.GREEN + "+" + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]), 2))) + "€" + Style.RESET_ALL)
-                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
-                    elif (float(vergleich) > float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9) or float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) < 0:
-                         print("   " + Fore.RED + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]), 2))) + "€" + Style.RESET_ALL)
-                         print(str(JSON.bankStatementCounter[i]-f) + ". "  + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
+                    if (float(vergleich) < float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f]) and a < 9 and float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f]) > 0): 
+                        print("   " + Fore.GREEN + "+" + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f]), 2))) + "€" + Style.RESET_ALL)
+                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f] + "€" + Style.RESET_ALL)
+                    elif (float(vergleich) > float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f]) and a < 9) or float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) < 0:
+                         print("   " + Fore.RED + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f]), 2))) + "€" + Style.RESET_ALL)
+                         print(str(JSON.bankStatementCounter[i]-f) + ". "  + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f] + "€" + Style.RESET_ALL)
                     else:
-                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]-f-1)] + "€")
-                    vergleich = JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]-f-1)]
+                        print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f)] + "€")
+                    vergleich = JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]- JSON.bankStatementCounter[i] + f)]
                     a -= 1
                     f += 1
                 JSON.SaveToJSON()
