@@ -53,7 +53,7 @@ class OptionParts:
                 print ("Your current bank balance is: " + Fore.RED + str(*JSON.value[int(i)]) + "€")
                 print (Fore.BLUE + "How many do you want do deposite ?" + Style.RESET_ALL)
                 deposite = input()
-                JSON.value[int(i)] = [str(round(float(*JSON.value[int(i)]) - float(deposite), 2))]
+                JSON.value[int(i)] = [str(round(float(*JSON.value[int(i)]) + float(deposite), 2))]
                 print("Your new balace is: " + Fore.RED + str(*JSON.value[int(i)]) + "€." + Style.RESET_ALL)
                 if int(JSON.bankStatementCounter[i]) >= 10:
                      del JSON.bankAccountHistory[i][0]
@@ -117,10 +117,10 @@ class OptionParts:
                 f = 0
                 while f < (JSON.bankStatementCounter[i]):
                     if (float(vergleich) < float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9 and float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f -1]) > 0): 
-                        print("   " + Fore.GREEN + "+" + str(-(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]))) + "€" + Style.RESET_ALL)
+                        print("   " + Fore.GREEN + "+" + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]), 2))) + "€" + Style.RESET_ALL)
                         print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
                     elif (float(vergleich) > float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) and a < 9) or float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]) < 0:
-                         print("   " + Fore.RED + str(-(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]))) + "€" + Style.RESET_ALL)
+                         print("   " + Fore.RED + str(-(round(float(vergleich) - float(JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1]), 2))) + "€" + Style.RESET_ALL)
                          print(str(JSON.bankStatementCounter[i]-f) + ". "  + JSON.bankAccountHistory[i][JSON.bankStatementCounter[i]-f-1] + "€" + Style.RESET_ALL)
                     else:
                         print(str(JSON.bankStatementCounter[i]-f) + ". " + JSON.bankAccountHistory[i][(JSON.bankStatementCounter[i]-f-1)] + "€")
