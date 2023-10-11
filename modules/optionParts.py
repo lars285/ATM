@@ -17,7 +17,8 @@ class OptionParts:
         print(Fore.BLUE + "2. Deposit money")
         print(Fore.MAGENTA + "3. Withdraw money")
         print(Fore.CYAN + "4. Show Account History")
-        print(Fore.YELLOW + "5. Exit Bank" + Style.RESET_ALL)
+        print(Fore.YELLOW + "5. Forgot PIN" + Style.RESET_ALL)
+        print(Fore.YELLOW + "6. Exit Bank" + Style.RESET_ALL)
         self.menuNumber = input()
 
     def CreateAccount(self):
@@ -139,7 +140,28 @@ class OptionParts:
                     print(Fore.RED + "You entered the wrong PIN too many times!" + Style.RESET_ALL)
                     exit()
                 self.AccountHistory()
-
+    
+    def forgotPin(self):
+            print (Fore.RED + "Please enter your first name:" + Style.RESET_ALL)
+            firstNameTmp = input()
+            for i in range(len(JSON.firstNames)):
+                if JSON.firstNames[int(i)] == [firstNameTmp]:
+                    print (Fore.RED + "Please enter your last name:" + Style.RESET_ALL)
+                    lastNameTmp = input()
+                    if JSON.lastNames[int(i)] == [lastNameTmp]:
+                        print ("Do you really forgot your PIN?")
+                        print ("1. " + Fore.GREEN + "Yes" + Style.RESET_ALL)
+                        print ("2. " + Fore.RED + "No" + Style.RESET_ALL)
+                        forgotPin = int(input())
+                        if forgotPin == 1:
+                            pinTmp = random.randint(1111,9999)
+                            JSON.pin[i] = [pinTmp]
+                            print("Her is your new PIN: " + Fore.RED + str(pinTmp) + Style.RESET_ALL + ". Remember it and don't tell anyone about it!")
+                            JSON.SaveToJSON()
+                            self.Beginning()
+            print(Fore.RED + "This name does not exist"+ Style.RESET_ALL)
+                            
+                            
     def exitBank(self):
         exit()
         

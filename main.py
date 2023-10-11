@@ -15,5 +15,7 @@ while True:
     if int(OP.menuNumber) == 4:
         OP.AccountHistory()
     if int(OP.menuNumber) == 5:
+        OP.forgotPin()
+    if int(OP.menuNumber) == 6:
         OP.exitBank()
     
