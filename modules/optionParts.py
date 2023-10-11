@@ -17,7 +17,7 @@ class OptionParts:
         print(Fore.BLUE + "2. Deposit money")
         print(Fore.MAGENTA + "3. Withdraw money")
         print(Fore.CYAN + "4. Show Account History")
-        print(Fore.YELLOW + "5. Forgot PIN" + Style.RESET_ALL)
+        print(Fore.RED + "5. Forgot PIN" + Style.RESET_ALL)
         print(Fore.YELLOW + "6. Exit Bank" + Style.RESET_ALL)
         self.menuNumber = input()
 
